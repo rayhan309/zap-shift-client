@@ -1,5 +1,5 @@
-// import logo from "../../../../assets/service.pnj"
 import { motion } from "framer-motion";
+import logo from '../../../../assets/athurs/service.png'
 
 
 const OurServices = () => {
@@ -51,9 +51,11 @@ const OurServices = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               key={i}
-              className={`rounded-3xl p-8 shadow-lg bg-white transition duration-300 hover:bg-primary`}
+              className={`rounded-3xl p-8 shadow-lg bg-white flex flex-col justify-center transition duration-300 hover:bg-primary`}
             >
-              {/* <img src={logo} alt="" /> */}
+              <div className="flex justify-center">
+                <img className="w-12 pb-5" src={logo} alt="" />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
                 {item.title}
               </h3>

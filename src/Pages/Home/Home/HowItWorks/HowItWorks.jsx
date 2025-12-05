@@ -1,4 +1,4 @@
-// import icons from "../../../assets/bookingIcon.png"
+import icons from "../../../../assets/athurs/bookingIcon.png"
 
 export default function HowItWorks() {
 
@@ -32,7 +32,7 @@ export default function HowItWorks() {
               key={index}
               className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition duration-300"
             >
-              {/* <div className="mb-4"><img src={icons} alt="" /></div> */}
+              <div className="mb-4"><img src={icons} alt="" /></div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
               <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
             </div>
