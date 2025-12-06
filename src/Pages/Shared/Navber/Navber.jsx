@@ -18,16 +18,16 @@ const Navber = () => {
         <NavLink to={'/'}>Pricing</NavLink>
       </li>
       <li>
-        <NavLink to={'/'}>Blog</NavLink>
+        <NavLink to={'/'}>Be a Rider</NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink to={'/'}>Contact</NavLink>
-      </li>
+      </li> */}
     </>
   );
   return (
     <div className="pt-5">
-    <div className="navbar shadow-sm bg-white rounded-2xl px-6">
+    <div className="navbar bg-white rounded-2xl px-6">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

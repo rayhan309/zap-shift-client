@@ -9,7 +9,7 @@ import rewiesLogo from "../../../assets/athurs/reviewQuote.png";
 
 const CustomerSayings = ({ rewiesPromiss }) => {
   const rewiesData = use(rewiesPromiss);
-  console.log(rewiesData);
+  // console.log(rewiesData);
 
   return (
     <div className="mt-16 space-y-5">

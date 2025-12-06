@@ -1,23 +1,7 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { NavLink, Outlet } from "react-router";
 
 const AboutUs = () => {
-  const links = (
-    <>
-      <li>
-        <NavLink to={'/'}>Story</NavLink>
-      </li>
-      <li>
-        <NavLink to={'/'}>Mission</NavLink>
-      </li>
-      <li>
-        <NavLink to={'/'}>Success</NavLink>
-      </li>
-      <li>
-        <NavLink to={'/'}>Team & Others</NavLink>
-      </li>
-    </>
-  );
   return (
     <div className="bg-white rounded-2xl my-6 p-12">
       <h1 className="text-3xl font-extrabold text-secondary">About Us</h1>
@@ -30,9 +14,23 @@ const AboutUs = () => {
       <div className="bg-gray-100 w-full h-1 my-5"></div>
 
       <div className="flex flex-wrap gap-10 lis">
-    
-            {links}
-        
+        {" "}
+        <li>
+          <NavLink to={""}>Story</NavLink>
+        </li>
+        <li>
+          <NavLink to={"mission"}>Mission</NavLink>
+        </li>
+        <li>
+          <NavLink to={"success"}>Success</NavLink>
+        </li>
+        <li>
+          <NavLink to={"teams"}>Team & Others</NavLink>
+        </li>
+      </div>
+
+      <div>
+        <Outlet />
       </div>
     </div>
   );

@@ -24,6 +24,9 @@ body{
   list-style: none
 }
 
-ul a.active {
+ul li a.active {
   @apply bg-primary rounded-2xl text-secondary
+}
+div li a.active {
+  @apply text-secondary font-bold
 }

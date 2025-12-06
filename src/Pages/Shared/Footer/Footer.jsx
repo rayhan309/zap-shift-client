@@ -17,11 +17,11 @@ const Footer = () => {
         <a>Pricing</a>
       </li>
       <li>
-        <a>Blog</a>
+        <a>Be a Rider</a>
       </li>
-      <li>
+      {/* <li>
         <a>Contact</a>
-      </li>
+      </li> */}
     </>
   );
 
