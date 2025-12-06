@@ -35,7 +35,7 @@ const OurServices = () => {
   // transition={{ duration: 0.8 }}
 
   return (
-    <section className="w-full mt-5 py-16 bg-[#053B44] rounded-4xl">
+    <section className="mt-5 mx-5 py-16 bg-[#053B44] rounded-2xl">
       <div className="px-14 text-center">
         <h2 className="text-4xl font-bold text-white mb-4">Our Services</h2>
         <p className="text-white/80 max-w-2xl mx-auto mb-12">

@@ -23,8 +23,8 @@ const brandLogos = [
 
 const Brands = () => {
   return (
-    <div className="mb-10 mt-20">
-      <h2 className="text-3xl font-bold text-secondary text-center">
+    <div className="mb-10 mt-20 max-w-4xl mx-auto">
+      <h2 className="text-4xl font-bold text-secondary text-center">
         We've helped thousands of sales teams
       </h2>
 
@@ -39,7 +39,7 @@ const Brands = () => {
           disableOnInteraction: true,
         }}
         modules={[Autoplay]}
-        className="mySwiper mt-8 w-6xl mx-auto ml-2"
+        className="mySwiper mt-8 w-full ml-2"
       >
         {brandLogos.map((logo, index) => (
           <SwiperSlide key={index}>

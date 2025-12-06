@@ -8,7 +8,7 @@ import { FaArrowUp } from "react-icons/fa";
 
 const Banner = () => {
   return (
-    <div className="relative">
+    <div className="relative mx-2 md:mx-0">
       <Carousel infiniteLoop={true} interval={4000} autoPlay={true}>
         <div>
           <img src={image1} />

@@ -22,7 +22,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="w-full py-12 px-10">
+    <section className="w-full py-12">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-secondary mb-8">How It Works</h2>
 

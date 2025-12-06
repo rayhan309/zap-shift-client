@@ -20,3 +20,10 @@ body{
   --color-primary: #CAEB66;
   --color-secondary: #03373D;
 }
+.lis {
+  list-style: none
+}
+
+ul a.active {
+  @apply bg-primary rounded-2xl text-secondary
+}

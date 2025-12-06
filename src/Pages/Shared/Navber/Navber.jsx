@@ -6,27 +6,28 @@ const Navber = () => {
   const links = (
     <>
       <li>
-        <NavLink>Services</NavLink>
+        <NavLink to={'/'}>Services</NavLink>
       </li>
       <li>
-        <NavLink>Coverage</NavLink>
+        <NavLink to={'/coverage'}>Coverage</NavLink>
       </li>
       <li>
-        <NavLink>About Us</NavLink>
+        <NavLink to={'/aboutUs'}>About Us</NavLink>
       </li>
       <li>
-        <NavLink>Pricing</NavLink>
+        <NavLink to={'/'}>Pricing</NavLink>
       </li>
       <li>
-        <NavLink>Blog</NavLink>
+        <NavLink to={'/'}>Blog</NavLink>
       </li>
       <li>
-        <NavLink>Contact</NavLink>
+        <NavLink to={'/'}>Contact</NavLink>
       </li>
     </>
   );
   return (
-    <div className="navbar shadow-sm">
+    <div className="pt-5">
+    <div className="navbar shadow-sm bg-white rounded-2xl px-6">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -63,6 +64,7 @@ const Navber = () => {
       <div className="navbar-end">
         <a className="btn">Button</a>
       </div>
+    </div>
     </div>
   );
 };

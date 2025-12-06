@@ -1,15 +1,27 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../Layouts/RootLayout";
 import Home from "../Pages/Home/Home/Home";
+import Coverage from "../Pages/Coverage/Coverage/Coverage";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
     {
         path: '/',
         Component: RootLayout,
+        hydrateFallbackElement: <p>Loading....</p>,
         children: [
             {
                 index: true,
                 Component: Home
+            },
+            {
+                path: '/coverage',
+                Component: Coverage,
+                loader: () => fetch('/serviceCenter.json').then(res => res.json())
+            },
+            {
+                path: '/aboutUs',
+                Component: AboutUs
             }
         ]
     }
