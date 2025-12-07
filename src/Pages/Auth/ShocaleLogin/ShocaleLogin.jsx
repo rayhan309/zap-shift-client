@@ -1,9 +1,13 @@
 import React from "react";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router";
 
 const ShocaleLogin = () => {
   const { signinWithGoggle } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  // console.log(location)
 
   const handleSigninWithGoggle = () => {
     signinWithGoggle()
@@ -17,6 +21,9 @@ const ShocaleLogin = () => {
             timer: 1500,
           });
         }
+
+        // navigate to currect page
+        navigate(location.state || "/");
       })
       .catch((err) => {
         console.log(err?.message);
@@ -25,11 +32,18 @@ const ShocaleLogin = () => {
 
   return (
     <div className="text-center mb-2">
-      <p className="pb-2">or</p>
+
+      {/* OR Divider */}
+      <div className="flex items-center gap-4 mb-2">
+        <div className="flex-1 h-px bg-gray-400"></div>
+        <span className="text-gray-400">or</span>
+        <div className="flex-1 h-px bg-gray-400"></div>
+      </div>
+
       {/* Google */}
       <button
         onClick={handleSigninWithGoggle}
-        className="btn bg-white text-black border-[#e5e5e5] w-full"
+        className="btn bg-gray-200 text-black border-none w-full"
       >
         <svg
           aria-label="Google logo"

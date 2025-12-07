@@ -5,13 +5,15 @@ import { Outlet } from "react-router";
 
 const AuthLayout = () => {
   return (
-    <div className="max-w-7xl mx-auto min-h-screen">
-      <Logo />
-      <div className="flex items-center">
+    <div className="max-w-7xl mx-auto min-h-screen flex flex-col justify-center relative">
+      <div className="absolute top-5 left-3">
+        <Logo />
+      </div>
+      <div className="flex flex-col-reverse lg:flex-row items-center mt-24 lg:mt-0">
         <div className="flex-1 flex justify-center">
           <Outlet />
         </div>
-        <img className="flex-1" src={authLogo} alt="logo" />
+        <img className="flex-1 mb-5 lg:mb-0" src={authLogo} alt="logo" />
       </div>
     </div>
   );

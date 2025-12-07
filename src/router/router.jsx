@@ -10,58 +10,68 @@ import Teams from "../Pages/AboutUs/Teams/Teams";
 import AuthLayout from "../Layouts/AuthLayout";
 import Register from "../Pages/Auth/Register/Register";
 import Login from "../Pages/Auth/Login/Login";
+import PrivitePage from "../AtuhContext/PrivitePage";
+import Rider from "../Pages/Rider/Rider";
 
 export const router = createBrowserRouter([
-    {
-        path: '/',
-        Component: RootLayout,
-        hydrateFallbackElement: <p>Loading....</p>,
+  {
+    path: "/",
+    Component: RootLayout,
+    hydrateFallbackElement: <p>Loading....</p>,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "coverage",
+        Component: Coverage,
+        loader: () => fetch("/serviceCenter.json").then((res) => res.json()),
+      },
+      {
+        path: "aboutUs",
+        Component: AboutUs,
         children: [
-            {
-                index: true,
-                Component: Home
-            },
-            {
-                path: 'coverage',
-                Component: Coverage,
-                loader: () => fetch('/serviceCenter.json').then(res => res.json())
-            },
-            {
-                path: 'aboutUs',
-                Component: AboutUs,
-                children: [
-                    {
-                        index: true,
-                        Component: Story
-                    },
-                    {
-                        path: 'mission',
-                        Component: Mission
-                    },
-                    {
-                        path: 'success',
-                        Component: Success
-                    },
-                    {
-                        path: 'teams',
-                        Component: Teams
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        path: '/',
-        Component: AuthLayout,
-        children: [
-            {
-                path: 'register',
-                Component: Register
-            },
-            {
-                path: 'login',
-                Component: Login
-            }
-        ]
-    }
+          {
+            index: true,
+            Component: Story,
+          },
+          {
+            path: "mission",
+            Component: Mission,
+          },
+          {
+            path: "success",
+            Component: Success,
+          },
+          {
+            path: "teams",
+            Component: Teams,
+          },
+        ],
+      },
+      {
+        path: "/rider",
+        element: (
+          <PrivitePage>
+            <Rider />
+          </PrivitePage>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/",
+    Component: AuthLayout,
+    children: [
+      {
+        path: "register",
+        Component: Register,
+      },
+      {
+        path: "login",
+        Component: Login,
+      },
+    ],
+  },
 ]);
