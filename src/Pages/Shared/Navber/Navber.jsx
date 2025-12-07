@@ -19,11 +19,17 @@ const Navber = () => {
         <NavLink to={"/aboutUs"}>About Us</NavLink>
       </li>
       <li>
-        <NavLink to={"/"}>Pricing</NavLink>
+        <NavLink to={"/sentParcel"}>Send Parcel</NavLink>
       </li>
+      {user && (
+        <li>
+          <NavLink to={"/dashbords/my-parcels"}>My Parcels</NavLink>
+        </li>
+      )}
       <li>
-        <NavLink to={"/"}>Be a Rider</NavLink>
+        <NavLink to={"/rider"}>Be a Rider</NavLink>
       </li>
+
       {/* <li>
         <NavLink to={'/'}>Contact</NavLink>
       </li> */}
@@ -38,18 +44,16 @@ const Navber = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, LogOut it!",
     }).then((result) => {
       if (result.isConfirmed) {
         signOutUser()
-          .then((res) => {
-            if (res) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success",
-              });
-            }
+          .then(() => {
+            Swal.fire({
+              title: "LogOuted!",
+              text: "Your account has been logOuted.",
+              icon: "success",
+            });
           })
           .catch((err) => {
             console.log(err?.message);
@@ -94,22 +98,28 @@ const Navber = () => {
         <div className="navbar-end">
           {user ? (
             <a
-              className="btn btn-outline btn-primary textsec"
+              className="btn btn-outline text-secondary btn-primary textsec"
               onClick={handleLogOut}
             >
               LogOut
             </a>
           ) : (
-            <Link to={"/login"} className="btn btn-outline btn-primary textsec">
+            <Link
+              to={"/login"}
+              className="btn btn-outline text-secondary btn-primary textsec"
+            >
               LogIn
             </Link>
           )}
 
           <div className="flex items-center">
-            <Link to={'/rider'} className="btn btn-primary text-secondary ml-2">
+            <Link to={"/rider"} className="btn btn-primary text-secondary ml-2">
               Be a rider?
             </Link>
-            <Link to={'/rider'} className="btn rounded-full bg-gray-800 text-primary font-bold">
+            <Link
+              to={"/rider"}
+              className="btn rounded-full bg-gray-800 text-primary font-bold"
+            >
               <FaArrowUp className="rotate-45" />
             </Link>
           </div>

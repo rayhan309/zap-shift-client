@@ -12,6 +12,9 @@ import Register from "../Pages/Auth/Register/Register";
 import Login from "../Pages/Auth/Login/Login";
 import PrivitePage from "../AtuhContext/PrivitePage";
 import Rider from "../Pages/Rider/Rider";
+import SendParcel from "../Pages/SendParcel/SendParcel";
+import DashLayout from "../Layouts/DashLayout";
+import MyParcels from "../Pages/Dashboards/MyParcels/MyParcels";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +29,15 @@ export const router = createBrowserRouter([
       {
         path: "coverage",
         Component: Coverage,
+        loader: () => fetch("/serviceCenter.json").then((res) => res.json()),
+      },
+      {
+        path: "sentParcel",
+        element: (
+          <PrivitePage>
+            <SendParcel />
+          </PrivitePage>
+        ),
         loader: () => fetch("/serviceCenter.json").then((res) => res.json()),
       },
       {
@@ -72,6 +84,20 @@ export const router = createBrowserRouter([
         path: "login",
         Component: Login,
       },
+    ],
+  },
+  {
+    path: "dashbords",
+    element: (
+      <PrivitePage>
+        <DashLayout></DashLayout>
+      </PrivitePage>
+    ),
+    children: [
+      {
+        path: '/dashbords/my-parcels',
+        Component: MyParcels
+      }
     ],
   },
 ]);
