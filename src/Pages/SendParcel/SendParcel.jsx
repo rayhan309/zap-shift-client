@@ -6,9 +6,9 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSqeure from "../../Hooks/useAxiosSqeure";
 
 const SendParcel = () => {
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, control, reset } = useForm();
   const serviceSenters = useLoaderData();
-  const {user} = useAuth();
+  const { user } = useAuth();
   const axiosSqeure = useAxiosSqeure();
 
   const regions = [...new Set(serviceSenters.map((c) => c.region))];
@@ -48,6 +48,9 @@ const SendParcel = () => {
       }
     }
 
+    data.cost = cost;
+    data.status = 'UnPaide';
+
     Swal.fire({
       title: "Agree with the cost?",
       text: `You will be charge ${cost} taka!`,
@@ -58,13 +61,23 @@ const SendParcel = () => {
       confirmButtonText: "I agree!",
     }).then((result) => {
       if (result.isConfirmed) {
-
-        // post db 
-        axiosSqeure.post('/parcels', data).then(res => {
-          console.log(res.data)
-        }).catch(() => {
-          alert("mammamamam")
-        })
+        // post db
+        axiosSqeure
+          .post("/parcels", data)
+          .then((res) => {
+            if(res.data.insertedId){
+            Swal.fire({
+              title: "Successfull!",
+              text: "Your parcel has been successfully added!",
+              icon: "success",
+            });
+            reset();
+            console.log(res.data);
+          }
+          })
+          .catch(() => {
+            // alert("mammamamam");
+          });
       }
     });
 
@@ -140,7 +153,7 @@ const SendParcel = () => {
             {/* sender email */}
             <label className="block mb-1">Sender Email</label>
             <input
-            type="email"
+              type="email"
               {...register("senderEmail", { required: true })}
               defaultValue={user?.email}
               readOnly
@@ -167,7 +180,7 @@ const SendParcel = () => {
             {/* sender region */}
             <label className="block mb-1">Sender Region</label>
             <select
-              {...register("senderRegion")}
+              {...register("senderRegion", {required: true})}
               className="w-full border p-3 rounded mb-4"
             >
               <option value="">Pick a region</option>
@@ -181,7 +194,7 @@ const SendParcel = () => {
             {/* sender district */}
             <label className="block mb-1">Sender District</label>
             <select
-              {...register("senderDistrict")}
+              {...register("senderDistrict", {required: true})}
               className="w-full border p-3 rounded mb-4"
             >
               <option value="">Pick a district</option>
@@ -237,7 +250,7 @@ const SendParcel = () => {
 
             <label className="block mb-1">Receiver Region</label>
             <select
-              {...register("receiverRegion")}
+              {...register("receiverRegion", {required: true})}
               className="w-full border p-3 rounded mb-4"
             >
               <option value="">Pick a region</option>
@@ -250,7 +263,7 @@ const SendParcel = () => {
 
             <label className="block mb-1">Receiver District</label>
             <select
-              {...register("receiverDistrict")}
+              {...register("receiverDistrict", {required: true})}
               className="w-full border p-3 rounded mb-4"
             >
               <option value="">Pick a district</option>

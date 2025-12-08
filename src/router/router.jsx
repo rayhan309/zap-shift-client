@@ -15,6 +15,8 @@ import Rider from "../Pages/Rider/Rider";
 import SendParcel from "../Pages/SendParcel/SendParcel";
 import DashLayout from "../Layouts/DashLayout";
 import MyParcels from "../Pages/Dashboards/MyParcels/MyParcels";
+import PyAmmount from "../Pages/Dashboards/PyAmmount/PyAmmount";
+import PaymentSuccess from "../Pages/Dashboards/PaymentSuccess/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -95,8 +97,16 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: '/dashbords/my-parcels',
+        path: 'my-parcels',
         Component: MyParcels
+      },
+      {
+        path: 'pyParcelAmmount/:id',
+        Component: PyAmmount
+      },
+      {
+        path: 'success-full',
+        Component: PaymentSuccess
       }
     ],
   },
