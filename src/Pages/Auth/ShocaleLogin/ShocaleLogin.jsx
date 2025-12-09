@@ -2,9 +2,11 @@ import React from "react";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router";
+import useAxiosSqeure from "../../../Hooks/useAxiosSqeure";
 
 const ShocaleLogin = () => {
   const { signinWithGoggle } = useAuth();
+  const axiosSqeure = useAxiosSqeure();
   const location = useLocation();
   const navigate = useNavigate();
   // console.log(location)
@@ -13,13 +15,29 @@ const ShocaleLogin = () => {
     signinWithGoggle()
       .then((res) => {
         if (res?.user) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Successfully Login!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          const userInfo = {
+            name: res.user.displayName,
+            email: res.user.email,
+            photoURL: res?.user?.photoURL,
+          };
+          // console.log(userInfo)
+
+          axiosSqeure
+            .post("/users", userInfo)
+            .then((res) => {
+              if (res) {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Your account login successfull!",
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
 
         // navigate to currect page
@@ -32,7 +50,6 @@ const ShocaleLogin = () => {
 
   return (
     <div className="text-center mb-2">
-
       {/* OR Divider */}
       <div className="flex items-center gap-4 mb-2">
         <div className="flex-1 h-px bg-gray-400"></div>

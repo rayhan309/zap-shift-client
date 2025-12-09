@@ -112,7 +112,7 @@ const Navber = () => {
             </Link>
           )}
 
-          <div className="flex items-center">
+          <div className="flex items-center hidden md:block">
             <Link to={"/rider"} className="btn btn-primary text-secondary ml-2">
               Be a rider?
             </Link>

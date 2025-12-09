@@ -25,7 +25,7 @@ const SendParcel = () => {
   };
 
   const handleSendParcel = (data) => {
-    console.log("FORM DATA:", data);
+    // console.log("FORM DATA:", data);
 
     const isDocument = data.parcelType === "document";
     const isSameDistrict = data.senderDistrict === data.receiverDistrict;
@@ -77,7 +77,7 @@ const SendParcel = () => {
                 timer: 2500,
               });
               reset();
-              console.log(res.data);
+              // console.log(res.data);
             }
           })
           .catch(() => {
@@ -86,7 +86,7 @@ const SendParcel = () => {
       }
     });
 
-    console.log("Parcel Cost:", cost);
+    // console.log("Parcel Cost:", cost);
   };
 
   return (

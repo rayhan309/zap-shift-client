@@ -18,6 +18,7 @@ import MyParcels from "../Pages/Dashboards/MyParcels/MyParcels";
 import PyAmmount from "../Pages/Dashboards/PyAmmount/PyAmmount";
 import PaymentSuccess from "../Pages/Dashboards/PaymentSuccess/PaymentSuccess";
 import PaymentHistorys from "../Pages/Dashboards/PaymentHistorys/PaymentHistorys";
+import RIdersreq from "../Pages/Dashboards/Ridersreq/RIdersreq";
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +73,7 @@ export const router = createBrowserRouter([
             <Rider />
           </PrivitePage>
         ),
+        loader: () => fetch("/serviceCenter.json").then((res) => res.json()),
       },
     ],
   },
@@ -112,6 +114,10 @@ export const router = createBrowserRouter([
       {
         path: 'payments-history',
         Component: PaymentHistorys
+      },
+      {
+        path: 'riders-request',
+        Component: RIdersreq
       }
     ],
   },

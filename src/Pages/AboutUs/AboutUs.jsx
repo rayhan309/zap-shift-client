@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router";
 
 const AboutUs = () => {
   return (
-    <div className="bg-white rounded-2xl my-6 p-12">
+    <div className="bg-white rounded-2xl my-8 p-12">
       <h1 className="text-3xl font-extrabold text-secondary">About Us</h1>
       <p className="text-gray-500 mt-4">
         Enjoy fast, reliable parcel delivery with real-time tracking and zero

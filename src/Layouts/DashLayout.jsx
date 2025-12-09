@@ -1,6 +1,6 @@
 import { History } from "lucide-react";
 import React from "react";
-import { FaFileContract } from "react-icons/fa";
+import { FaFileContract, FaMotorcycle } from "react-icons/fa";
 import { Link, Outlet } from "react-router";
 
 const DashLayout = () => {
@@ -90,6 +90,18 @@ const DashLayout = () => {
                 data-tip="Payment Histories"
                 >
                     <History width={17} />
+                <span className="is-drawer-close:hidden">Payment Histories</span>
+                </Link>
+            </li>
+
+
+            <li>
+                <Link
+                to={'/dashbords/riders-request'}
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Payment Histories"
+                >
+                    <FaMotorcycle width={17} />
                 <span className="is-drawer-close:hidden">Payment Histories</span>
                 </Link>
             </li>

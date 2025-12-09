@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import fileImg from "../../../assets/athurs/photo.png";
 import axios from "axios";
+import useAxiosSqeure from "../../../Hooks/useAxiosSqeure";
 
 const Register = () => {
   const {
@@ -14,6 +15,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
+  const axiosSqeure = useAxiosSqeure();
   const location = useLocation();
   const navigate = useNavigate();
   // console.log(location);
@@ -23,8 +25,7 @@ const Register = () => {
     const email = data?.email;
     const pass = data?.password;
     const name = data?.name;
-    const photo = data?.photo;
-    console.log(name, photo);
+    // console.log(name, photo);
 
     createUser(email, pass)
       .then((res) => {
@@ -39,28 +40,38 @@ const Register = () => {
 
           try {
             axios.post(url, formData).then((res) => {
-              console.log(res?.data?.data?.url);
-              if (res) {
+              // console.log(res?.data?.data?.url);
+              if (res?.data?.data?.url) {
                 updateUserProfile(name, res?.data?.data?.url)
-                .then(res => {
-                  console.log("photo uploade done", res)
-                })
-                .catch(err => console.log(err?.message))
+                  .then(() => {
+                    const userInfo = {
+                      name,
+                      email,
+                      photoURL: res?.data?.data?.url,
+                    };
+
+                    axiosSqeure.post("/users", userInfo).then((res) => {
+                      console.log(res.data.insertedId);
+                      if (res.data.insertedId) {
+                        Swal.fire({
+                          position: "top-end",
+                          icon: "success",
+                          title: "Create account successfull!",
+                          showConfirmButton: false,
+                          timer: 2000,
+                        });
+                      }
+                    });
+
+                    console.log("photo uploade done");
+                  })
+                  .catch((err) => console.log(err?.message));
               }
             });
           } catch (err) {
             console.log("Error", err);
           }
-
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Successfully Login!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-
-          console.log(res.user)
+          // console.log(res.user);
           navigate(location.state || "/");
         }
       })
