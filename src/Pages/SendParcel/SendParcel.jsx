@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSqeure from "../../Hooks/useAxiosSqeure";
@@ -10,6 +10,7 @@ const SendParcel = () => {
   const serviceSenters = useLoaderData();
   const { user } = useAuth();
   const axiosSqeure = useAxiosSqeure();
+  const navigate = useNavigate();
 
   const regions = [...new Set(serviceSenters.map((c) => c.region))];
 
@@ -49,7 +50,7 @@ const SendParcel = () => {
     }
 
     data.cost = cost;
-    data.status = 'UnPaide';
+    data.status = "UnPaide";
 
     Swal.fire({
       title: "Agree with the cost?",
@@ -58,22 +59,26 @@ const SendParcel = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "I agree!",
+      confirmButtonText: "Conferm & conteniu!",
     }).then((result) => {
       if (result.isConfirmed) {
         // post db
         axiosSqeure
           .post("/parcels", data)
           .then((res) => {
-            if(res.data.insertedId){
-            Swal.fire({
-              title: "Successfull!",
-              text: "Your parcel has been successfully added!",
-              icon: "success",
-            });
-            reset();
-            console.log(res.data);
-          }
+            if (res.data.insertedId) {
+              navigate('/dashbords/my-parcels');
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title:
+                  "Your parcel successfully added, Please conteuniu payment",
+                showConfirmButton: false,
+                timer: 2500,
+              });
+              reset();
+              console.log(res.data);
+            }
           })
           .catch(() => {
             // alert("mammamamam");
@@ -180,7 +185,7 @@ const SendParcel = () => {
             {/* sender region */}
             <label className="block mb-1">Sender Region</label>
             <select
-              {...register("senderRegion", {required: true})}
+              {...register("senderRegion", { required: true })}
               className="w-full border p-3 rounded mb-4"
             >
               <option value="">Pick a region</option>
@@ -194,7 +199,7 @@ const SendParcel = () => {
             {/* sender district */}
             <label className="block mb-1">Sender District</label>
             <select
-              {...register("senderDistrict", {required: true})}
+              {...register("senderDistrict", { required: true })}
               className="w-full border p-3 rounded mb-4"
             >
               <option value="">Pick a district</option>
@@ -250,7 +255,7 @@ const SendParcel = () => {
 
             <label className="block mb-1">Receiver Region</label>
             <select
-              {...register("receiverRegion", {required: true})}
+              {...register("receiverRegion", { required: true })}
               className="w-full border p-3 rounded mb-4"
             >
               <option value="">Pick a region</option>
@@ -263,7 +268,7 @@ const SendParcel = () => {
 
             <label className="block mb-1">Receiver District</label>
             <select
-              {...register("receiverDistrict", {required: true})}
+              {...register("receiverDistrict", { required: true })}
               className="w-full border p-3 rounded mb-4"
             >
               <option value="">Pick a district</option>

@@ -17,6 +17,7 @@ import DashLayout from "../Layouts/DashLayout";
 import MyParcels from "../Pages/Dashboards/MyParcels/MyParcels";
 import PyAmmount from "../Pages/Dashboards/PyAmmount/PyAmmount";
 import PaymentSuccess from "../Pages/Dashboards/PaymentSuccess/PaymentSuccess";
+import PaymentHistorys from "../Pages/Dashboards/PaymentHistorys/PaymentHistorys";
 
 export const router = createBrowserRouter([
   {
@@ -107,6 +108,10 @@ export const router = createBrowserRouter([
       {
         path: 'success-full',
         Component: PaymentSuccess
+      },
+      {
+        path: 'payments-history',
+        Component: PaymentHistorys
       }
     ],
   },

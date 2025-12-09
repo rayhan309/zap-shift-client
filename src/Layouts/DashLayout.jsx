@@ -1,3 +1,4 @@
+import { History } from "lucide-react";
 import React from "react";
 import { FaFileContract } from "react-icons/fa";
 import { Link, Outlet } from "react-router";
@@ -79,6 +80,17 @@ const DashLayout = () => {
                 >
                     <FaFileContract />
                 <span className="is-drawer-close:hidden">My Parcels</span>
+                </Link>
+            </li>
+
+            <li>
+                <Link
+                to={'/dashbords/payments-history'}
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Payment Histories"
+                >
+                    <History width={17} />
+                <span className="is-drawer-close:hidden">Payment Histories</span>
                 </Link>
             </li>
 
