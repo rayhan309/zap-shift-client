@@ -78,6 +78,8 @@ const MyParcels = () => {
     console.log(res.data);
   };
 
+  console.log(myParcels)
+
   return (
     <div className="overflow-x-auto">
       <table className="table table-zebra">
@@ -90,6 +92,7 @@ const MyParcels = () => {
             <th>Weight</th>
             <th>Ammount</th>
             <th>Status</th>
+            <th>Dalivary Status</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -103,6 +106,8 @@ const MyParcels = () => {
                 <td>{parcel?.parcelWeight}</td>
                 <td>{parcel?.cost}</td>
                 <td>{parcel?.status}</td>
+                <td>{parcel?.dalivaryStatus}</td>
+                {console.log(parcel?.dalivaryStatus, "majshkjdahdksjs")}
                 <td>
                   <button
                     onClick={() => handleDelete(parcel?._id)}

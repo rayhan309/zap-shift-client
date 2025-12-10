@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSqeure from "../../../Hooks/useAxiosSqeure";
 import useAuth from "../../../Hooks/useAuth";
-import { CircleCheck, CircleX, Trash2 } from "lucide-react";
+import { CircleCheck, CircleX, Eye, Trash2 } from "lucide-react";
+import { toast, ToastContainer } from "react-toastify";
 
 const RIdersreq = () => {
   const axiosSequere = useAxiosSqeure();
@@ -20,7 +21,7 @@ const RIdersreq = () => {
 
   const handleUpdate = obj => {
       axiosSequere.patch(`/riders/${obj.id}`, obj).then(res=> {
-      if(res.data.modifiedCount) {
+      if(res.data) {
         refetch();
       }
     }).catch(err => {
@@ -38,9 +39,7 @@ const RIdersreq = () => {
       status: 'selected',
       email: rider.email,
       id: rider._id
-    }
-    
-
+    } 
     handleUpdate(select)
   
   }
@@ -69,6 +68,12 @@ const RIdersreq = () => {
     });
   } 
 
+
+  // handleShowModal
+  const handleShowModal = rider => {
+    toast.success('Show modale & user data', rider.name);
+  }
+
   // console.log(data);
 
   return (
@@ -96,6 +101,7 @@ const RIdersreq = () => {
                 <td>{d?.phone}</td>
                 <td>{d?.status}</td>
                 <td>
+                    <Eye onClick={() => handleShowModal(d)} className="btn btn-primary border-none text-secondary mr-5" width={17} />
                     <CircleCheck onClick={() => handleSilected(d)} className="btn btn-primary border-none text-secondary" width={17} />
                     <CircleX onClick={() => handleRiject(d)} className="btn btn-error text-red-800 border-none ml-5" width={17} />
                     <Trash2 onClick={() => handleDelete(d._id)} className="btn btn-error text-red-800 border-none ml-5" width={17} />
@@ -105,6 +111,7 @@ const RIdersreq = () => {
           })}
         </tbody>
       </table>
+      <ToastContainer />
     </div>
   );
 };

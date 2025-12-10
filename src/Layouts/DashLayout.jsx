@@ -1,9 +1,17 @@
-import { History } from "lucide-react";
+import { History, UserRoundPlus } from "lucide-react";
 import React from "react";
-import { FaFileContract, FaMotorcycle } from "react-icons/fa";
+import { FaFileContract, FaMotorcycle, FaUsers } from "react-icons/fa";
 import { Link, Outlet } from "react-router";
+import useUserRole from "../Hooks/useUaerRole";
 
 const DashLayout = () => {
+  const { role, loading } = useUserRole();
+  // console.log(role);
+
+  if (loading) {
+    return <p className="text-center text-lg font-semibold">Loading...</p>;
+  }
+
   return (
     <div className="drawer max-w-7xl mx-auto lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -35,7 +43,6 @@ const DashLayout = () => {
         </nav>
         {/* Page content here */}
         <Outlet />
-
       </div>
 
       <div className="drawer-side is-drawer-close:overflow-visible">
@@ -49,7 +56,8 @@ const DashLayout = () => {
           <ul className="menu w-full grow">
             {/* List item */}
             <li>
-              <Link to={'/'}
+              <Link
+                to={"/"}
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Home Page"
               >
@@ -73,38 +81,72 @@ const DashLayout = () => {
 
             {/* my parcels  */}
             <li>
-                <Link
-                to={'/dashbords/my-parcels'}
+              <Link
+                to={"/dashbords/my-parcels"}
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="My Parcels"
-                >
-                    <FaFileContract />
+              >
+                <FaFileContract />
                 <span className="is-drawer-close:hidden">My Parcels</span>
-                </Link>
+              </Link>
             </li>
 
             <li>
-                <Link
-                to={'/dashbords/payments-history'}
+              <Link
+                to={"/dashbords/payments-history"}
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Payment Histories"
-                >
-                    <History width={17} />
-                <span className="is-drawer-close:hidden">Payment Histories</span>
-                </Link>
+              >
+                <History width={17} />
+                <span className="is-drawer-close:hidden">
+                  Payment Histories
+                </span>
+              </Link>
             </li>
 
+            {!role ||
+              (role?.role === "admin" && (
+                <>
+                  <li>
+                    <Link
+                      to={"/dashbords/riders-request"}
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Payment Histories"
+                    >
+                      <FaMotorcycle width={17} />
+                      <span className="is-drawer-close:hidden">
+                        Payment Histories
+                      </span>
+                    </Link>
+                  </li>
 
-            <li>
-                <Link
-                to={'/dashbords/riders-request'}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Payment Histories"
-                >
-                    <FaMotorcycle width={17} />
-                <span className="is-drawer-close:hidden">Payment Histories</span>
-                </Link>
-            </li>
+                  <li>
+                    <Link
+                      to={"/dashbords/rider-assign"}
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Rider Assign"
+                    >
+                      <UserRoundPlus width={17} />
+                      <span className="is-drawer-close:hidden">
+                        Rider Assign
+                      </span>
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      to={"/dashbords/users-management"}
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Users Management"
+                    >
+                      <FaUsers width={17} />
+                      <span className="is-drawer-close:hidden">
+                        Users Management
+                      </span>
+                    </Link>
+                  </li>
+                </>
+              ))}
 
             {/* List item */}
             <li>

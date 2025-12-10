@@ -19,6 +19,10 @@ import PyAmmount from "../Pages/Dashboards/PyAmmount/PyAmmount";
 import PaymentSuccess from "../Pages/Dashboards/PaymentSuccess/PaymentSuccess";
 import PaymentHistorys from "../Pages/Dashboards/PaymentHistorys/PaymentHistorys";
 import RIdersreq from "../Pages/Dashboards/Ridersreq/RIdersreq";
+import UsersManagement from "../Pages/Dashboards/UsersManagement/UsersManagement";
+import AdminPage from "../AtuhContext/AdminPage";
+import Forbidden from "../Components/Forbidden/Forbidden";
+import RiderAssign from "../Pages/Dashboards/RiderAssign/RiderAssign";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +38,10 @@ export const router = createBrowserRouter([
         path: "coverage",
         Component: Coverage,
         loader: () => fetch("/serviceCenter.json").then((res) => res.json()),
+      },
+      {
+        path: "forbidden",
+        Component: Forbidden,
       },
       {
         path: "sentParcel",
@@ -100,25 +108,45 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: 'my-parcels',
-        Component: MyParcels
+        path: "my-parcels",
+        Component: MyParcels,
       },
       {
-        path: 'pyParcelAmmount/:id',
-        Component: PyAmmount
+        path: "pyParcelAmmount/:id",
+        Component: PyAmmount,
       },
       {
-        path: 'success-full',
-        Component: PaymentSuccess
+        path: "success-full",
+        Component: PaymentSuccess,
       },
       {
-        path: 'payments-history',
-        Component: PaymentHistorys
+        path: "payments-history",
+        Component: PaymentHistorys,
       },
       {
-        path: 'riders-request',
-        Component: RIdersreq
-      }
+        path: "riders-request",
+        element: (
+          <AdminPage>
+            <RIdersreq></RIdersreq>
+          </AdminPage>
+        ),
+      },
+      {
+        path: "users-management",
+        element: (
+          <AdminPage>
+            <UsersManagement></UsersManagement>
+          </AdminPage>
+        ),
+      },
+      {
+        path: "rider-assign",
+        element: (
+          <AdminPage>
+            <RiderAssign />
+          </AdminPage>
+        ),
+      },
     ],
   },
 ]);
